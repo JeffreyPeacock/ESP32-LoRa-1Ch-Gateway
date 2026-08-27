@@ -17,8 +17,7 @@ rebuilds is the whole point of this command.
 so both come straight from `item-list`. Milestone comes from the issue:
 `Solo bench` or `Two-radio link`.
 
-If the identifiers there are placeholders, stop and say the board does not exist
-yet.
+The identifiers there are live.
 
 ## Three traps in the board JSON
 
@@ -35,7 +34,7 @@ Get these wrong and the table is quietly wrong rather than obviously broken.
 ## Step 1 — Pull the board
 
 ```bash
-gh project item-list <N> --owner JeffreyPeacock --format json \
+gh project item-list 13 --owner JeffreyPeacock --format json \
   --jq '.items[]
         | select(.status != "Completed")
         | [(.priority // "zz"), (.content.number|tostring), .status,

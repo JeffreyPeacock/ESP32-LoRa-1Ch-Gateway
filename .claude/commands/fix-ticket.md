@@ -5,23 +5,23 @@ in order. If no argument was given, ask which issue and stop.
 
 ## Config
 
-`.claude/board-config.md` holds the repo, project and field IDs, the labels and
-the two constraints specific to this board. If its identifiers are still
-placeholders, do the work and skip the board mutations — say so in the report.
+`.claude/board-config.md` holds the project and field IDs, the Area values, and
+the two constraints specific to this board — one application at a time, and a
+flash that sometimes needs a physical power cycle.
 
 ## Step 0 — Move the ticket to In Progress
 
 ```bash
 ITEM=$(gh api graphql -f query='
-{ repository(owner:"JeffreyPeacock", name:"<repo-name>") {
+{ repository(owner:"JeffreyPeacock", name:"ESP32-LoRa-1Ch-Gateway") {
     issue(number: <N>) { projectItems(first:5){ nodes{ id project{ number } } } } } }' \
-  --jq '.data.repository.issue.projectItems.nodes[] | select(.project.number==<N>) | .id')
+  --jq '.data.repository.issue.projectItems.nodes[] | select(.project.number==13) | .id')
 
 gh api graphql -f query='mutation {
   updateProjectV2ItemFieldValue(input:{
-    projectId:"<project-id>" itemId:"'"$ITEM"'"
-    fieldId:"<status-field-id>"
-    value:{ singleSelectOptionId:"<in-progress-id>" } }){ projectV2Item{ id } } }'
+    projectId:"PVT_kwHOAdChXs4Bhr4A" itemId:"'"$ITEM"'"
+    fieldId:"PVTSSF_lAHOAdChXs4Bhr4AzhgmtoE"
+    value:{ singleSelectOptionId:"f9411084" } }){ projectV2Item{ id } } }'
 ```
 
 If the item is not on the board, warn and continue. The board is bookkeeping;
@@ -30,7 +30,7 @@ the work is not.
 ## Step 1 — Read the ticket
 
 ```bash
-gh issue view <N> --repo <repo> --json number,title,body,labels,milestone
+gh issue view <N> --repo JeffreyPeacock/ESP32-LoRa-1Ch-Gateway --json number,title,body,labels,milestone
 ```
 
 Identify what "done" means before touching anything. Ask if you are not at 95%
@@ -117,7 +117,7 @@ The commit log is where the reasoning lives.
 
 ```bash
 git push -u origin <branch>
-gh pr create --repo <repo> \
+gh pr create --repo JeffreyPeacock/ESP32-LoRa-1Ch-Gateway \
   --title "<Type>: <description> (#<N>)" \
   --body "$(cat <<'BODY'
 ## Summary

@@ -8,15 +8,15 @@ live in documents.
 
 ## Config
 
-`.claude/board-config.md` — labels, milestones, rubric, field IDs. If its
-identifiers are placeholders, stop and say the board does not exist yet.
+`.claude/board-config.md` — Area values, milestones, the priority rubric and
+every field ID.
 
 ## Step 1 — Pull the board
 
 One call gets everything.
 
 ```bash
-gh project item-list <N> --owner JeffreyPeacock --format json \
+gh project item-list 13 --owner JeffreyPeacock --format json \
   --jq '.items[] | {n: .content.number, title: .content.title, status, priority,
                     labels: .labels, milestone: .milestone}'
 ```
@@ -24,7 +24,7 @@ gh project item-list <N> --owner JeffreyPeacock --format json \
 Cross-reference repo state where needed:
 
 ```bash
-gh issue list --repo <repo> --state open --limit 100 \
+gh issue list --repo JeffreyPeacock/ESP32-LoRa-1Ch-Gateway --state open --limit 100 \
   --json number,title,labels,milestone,createdAt
 ```
 
@@ -47,7 +47,7 @@ ticket can be genuinely finished with **no commit to prove it** — a measuremen
 taken, a question settled, a document read. Check both:
 
 ```bash
-gh pr list --repo <repo> --state merged --limit 20 \
+gh pr list --repo JeffreyPeacock/ESP32-LoRa-1Ch-Gateway --state merged --limit 20 \
   --json number,title,closingIssuesReferences
 git log --oneline -30
 ```

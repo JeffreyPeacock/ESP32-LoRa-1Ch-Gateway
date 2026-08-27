@@ -8,10 +8,9 @@ for what is genuinely missing.
 ## Config
 
 Read `.claude/board-config.md` for the repo, project and field IDs, the label
-set, the milestones and the priority rubric. **If any identifier there is still
-a `<...>` placeholder, stop and say the board does not exist yet** — file the
-issue with `gh issue create` if the repo exists, and report that the board step
-was skipped. Do not invent IDs.
+set, the milestones and the priority rubric. **The identifiers there are live.** Repository, project #13, and every field
+and option ID are filled in, and both the repository and the project are
+public. Do not invent IDs; read them from that file.
 
 ## Steps
 
@@ -26,7 +25,7 @@ was skipped. Do not invent IDs.
    "we now know X" is legitimate. Say what would settle the question.
 
    ```bash
-   gh issue create --repo <repo> \
+   gh issue create --repo JeffreyPeacock/ESP32-LoRa-1Ch-Gateway \
      --title "<title>" --body "<body>" \
      --label "<label>[,<label>]" --milestone "<milestone>"
    ```
@@ -36,25 +35,25 @@ was skipped. Do not invent IDs.
 
 3. **Add it to the board.**
    ```bash
-   gh project item-add <N> --owner JeffreyPeacock --url <issue-url>
+   gh project item-add 13 --owner JeffreyPeacock --url <issue-url>
    ```
 
 4. **Get the item ID.** Retry once after a few seconds if empty — attachment
    lags briefly.
    ```bash
    gh api graphql -f query='
-   { repository(owner:"JeffreyPeacock", name:"<repo-name>") {
+   { repository(owner:"JeffreyPeacock", name:"ESP32-LoRa-1Ch-Gateway") {
        issue(number: <N>) { projectItems(first:5){ nodes{ id project{ number } } } } } }' \
-     --jq '.data.repository.issue.projectItems.nodes[] | select(.project.number==<N>) | .id'
+     --jq '.data.repository.issue.projectItems.nodes[] | select(.project.number==13) | .id'
    ```
 
 5. **Set Status = Backlog, then Priority.** Two mutations, same shape:
    ```bash
    gh api graphql -f query='mutation {
      updateProjectV2ItemFieldValue(input:{
-       projectId:"<project-id>" itemId:"<item-id>"
-       fieldId:"<status-field-id>"
-       value:{ singleSelectOptionId:"<backlog-id>" } }){ projectV2Item{ id } } }'
+       projectId:"PVT_kwHOAdChXs4Bhr4A" itemId:"<item-id>"
+       fieldId:"PVTSSF_lAHOAdChXs4Bhr4AzhgmtoE"
+       value:{ singleSelectOptionId:"da2e6d4d" } }){ projectV2Item{ id } } }'
    ```
 
 6. **Report:** issue number and URL, labels, milestone, priority, and that it is

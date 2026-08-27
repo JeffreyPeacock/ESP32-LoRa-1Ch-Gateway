@@ -4,8 +4,7 @@ Verify, squash-merge, and do the board housekeeping.
 
 ## Config
 
-`.claude/board-config.md`. If its identifiers are placeholders, merge normally
-and report that the board step was skipped.
+`.claude/board-config.md` holds the project and field IDs.
 
 ## Determine the PR
 
@@ -46,7 +45,7 @@ pending or failed, report and stop.
 ## Step 2 — Squash and merge
 
 ```bash
-gh pr merge <PR> --repo <repo> --squash --delete-branch
+gh pr merge <PR> --repo JeffreyPeacock/ESP32-LoRa-1Ch-Gateway --squash --delete-branch
 ```
 
 If the merge fails, report and stop — do not continue to housekeeping.
@@ -66,15 +65,15 @@ Read `closingIssuesReferences` from the PR JSON, and parse title and body for
 
 ```bash
 ITEM=$(gh api graphql -f query='
-{ repository(owner:"JeffreyPeacock", name:"<repo-name>") {
+{ repository(owner:"JeffreyPeacock", name:"ESP32-LoRa-1Ch-Gateway") {
     issue(number:<N>){ projectItems(first:5){ nodes{ id project{ number } } } } } }' \
-  --jq '.data.repository.issue.projectItems.nodes[] | select(.project.number==<N>) | .id')
+  --jq '.data.repository.issue.projectItems.nodes[] | select(.project.number==13) | .id')
 
 gh api graphql -f query='mutation {
   updateProjectV2ItemFieldValue(input:{
-    projectId:"<project-id>" itemId:"'"$ITEM"'"
-    fieldId:"<status-field-id>"
-    value:{ singleSelectOptionId:"<completed-id>" } }){ projectV2Item{ id } } }'
+    projectId:"PVT_kwHOAdChXs4Bhr4A" itemId:"'"$ITEM"'"
+    fieldId:"PVTSSF_lAHOAdChXs4Bhr4AzhgmtoE"
+    value:{ singleSelectOptionId:"4f793530" } }){ projectV2Item{ id } } }'
 ```
 
 If an issue is not on the board, note it and continue.

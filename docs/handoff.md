@@ -1,6 +1,6 @@
 # Handoff — read this first
 
-You are taking over a project with **one board and no issue tracker**. Much of
+You are taking over a project with **one board**. Much of
 the value is written-down findings rather than code — but as of 2026-08-23 there
 is now firmware of its own too: a PlatformIO project with an SX1276 driver, a
 listener, a link test and two diagnostic tools. Read `CLAUDE.md` before touching
@@ -125,7 +125,9 @@ the next person and a day spent on it.
   shell that builds its download list client-side, so `curl` retrieves a 4 KB
   page with no links in it. A browser gets the PDF. Link is in README.
   *(Since fetched by hand into `docs/datasheets/CH340DS1.pdf`.)*
-- **No git remote.** Commit locally. Do not report a push that did not happen.
+- ~~**No git remote.**~~ Published 2026-08-27:
+  <https://github.com/JeffreyPeacock/ESP32-LoRa-1Ch-Gateway>, with project #13
+  at <https://github.com/users/JeffreyPeacock/projects/13>. Both public.
 
 ## The local mirror is the only copy
 
@@ -135,9 +137,10 @@ they list, the hookup guide, and all three linked repositories. The board is
 2019 hardware retired from a catalogue, so those web assets are not guaranteed
 to outlast the project.
 
-**Both directories are gitignored, and there is no git remote.** The mirror
-therefore protects against SparkFun deleting an asset, and against nothing else
-— not disk loss, not accidental deletion. Nothing versions it. If these files
+**`etc/firmware/` is gitignored; `docs/datasheets/` is now committed** — see
+`docs/datasheets/README.md` for the fair-use reasoning. So the datasheets are
+versioned and pushed, and the source archives are still local-only, protected
+against SparkFun deleting an asset and against nothing else. If these files
 matter, that gap needs closing deliberately; see the note in `README.md`.
 
 ## Environment

@@ -5,15 +5,14 @@ ticket blocks.
 
 ## Config
 
-`.claude/board-config.md`. If its identifiers are placeholders, stop and say the
-board does not exist yet.
+`.claude/board-config.md` holds the project and field IDs, and the Area values.
 
 ## Step 1 — Enumerate the Ready queue in priority order
 
 The board is small, so one call is complete. Filter and sort locally:
 
 ```bash
-gh project item-list <N> --owner JeffreyPeacock --format json \
+gh project item-list 13 --owner JeffreyPeacock --format json \
   --jq '.items[] | select(.status=="Ready")
         | [(.priority // "p9"), (.content.number|tostring), .content.title] | @tsv' \
   | LC_ALL=C sort -t$'\t' -k1,1 -k2,2n

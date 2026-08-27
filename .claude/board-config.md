@@ -8,63 +8,54 @@ commands point at this file.
 **This file is deliberately not in `.claude/commands/`.** Anything in that
 directory becomes a slash command, and this is data.
 
-## Status: NOT YET CREATED
+## Identifiers
 
-Neither the GitHub repository nor the Project exists as of 2026-08-27. Every
-value below is a placeholder. **The commands that read this file must stop and
-say so rather than guessing** if they find a `<...>` still in place.
+Created 2026-08-27. All live.
 
 | | |
 |---|---|
 | Owner | `JeffreyPeacock` — a **user**, not an org. GraphQL uses `user(login:)`, `gh project` needs `--owner JeffreyPeacock` |
-| Repo | `<repo>` — likely `JeffreyPeacock/ESP32-LoRa-1Ch-Gateway` |
-| Project number | `<N>` |
-| Project ID | `<PVT_...>` |
-| Status field ID | `<PVTSSF_...>` |
-| Priority field ID | `<PVTSSF_...>` |
+| Repo | `JeffreyPeacock/ESP32-LoRa-1Ch-Gateway` |
+| Project | **#13**, <https://github.com/users/JeffreyPeacock/projects/13> |
+| Project ID | `PVT_kwHOAdChXs4Bhr4A` |
+| Status field | `PVTSSF_lAHOAdChXs4Bhr4AzhgmtoE` |
+| Priority field | `PVTSSF_lAHOAdChXs4Bhr4Azhgmto0` |
+| Area field | `PVTSSF_lAHOAdChXs4Bhr4Azhgmto4` |
 
-Status options: Backlog `<id>` · Prioritized `<id>` · Ready `<id>` ·
-In Progress `<id>` · Completed `<id>`
+**Status** — Backlog `da2e6d4d` · Prioritized `2bf6b731` · Ready `e353a1e7` ·
+In Progress `f9411084` · Completed `4f793530`
 
-Priority options: p1 `<id>` · p2 `<id>` · p3 `<id>` · p4 `<id>` · p5 `<id>`
+**Priority** — p1 `ebf134ed` · p2 `7d85e4db` · p3 `c1271b51` · p4 `7d45d2ec` ·
+p5 `7d01d1b6`
 
-## Filling this in
+**Area** — Radio `5ff937ac` · Firmware `2f7a4d49` · Tooling `efcfd9fc` ·
+Docs `04ec6e87` · Hardware `d15f5e87` · LoRaWAN `ac07ca52` · Interop `d2977905`
 
-Run once, after creating the Project, and paste the results above.
+Both the repository and the project are **public**.
+
+## Re-reading these if they ever change
 
 ```bash
-OWNER=JeffreyPeacock
-NUM=<project-number>
-
-# Project ID
-gh project view "$NUM" --owner "$OWNER" --format json --jq '.id'
-
-# Field IDs and every single-select option ID, in one call
-gh project field-list "$NUM" --owner "$OWNER" --format json \
-  --jq '.fields[] | select(.options) | {field: .name, id: .id,
-        options: [.options[] | {name, id}]}'
+gh project field-list 13 --owner JeffreyPeacock --format json \
+  --jq '.fields[] | select(.options) | {field:.name, id:.id,
+        options:[.options[] | {name, id}]}'
 ```
+
+## Area is a board field, not a label
+
+This project was copied from the sibling **SAMD21-LoRa-ProRF** board (project
+#11), which uses a single-select **Area** field rather than topic labels. That
+convention is kept. Two of its areas were dropped because this board does not
+have the hardware — `Qwiic` (no Qwiic connector) and `Logging` (no OpenLog, no
+SD card) — and three were added: `Hardware`, `LoRaWAN`, `Interop`.
+
+**Set Area on every ticket.** Labels are still available for cross-cutting
+things, but the topical classification lives in Area.
 
 ## Conventions this project uses
 
 **Priority is a board field, not a label.** Do not create `priority:pN` labels.
 A ticket with no priority is a triage failure, not an implied p3.
-
-### Labels
-
-| Label | Use for |
-|---|---|
-| `hardware` | The board itself: pins, flashing, power, antenna, the GPIO12 strap |
-| `radio` | SX1276 driver and register work, modulation settings, RSSI/SNR |
-| `firmware` | Applications under `src/`, PlatformIO environments |
-| `tooling` | `scripts/`, `Makefile`, port detection, credential masking |
-| `docs` | The written findings, which are most of this project's value |
-| `lorawan` | Gateway role, ChirpStack, band plan |
-| `interop` | The SAMD21 Pro RF link, or anything needing the other developer |
-| `decision` | An open choice not yet settled |
-
-More than one is fine. If nothing fits, propose a new label rather than forcing
-a bad one.
 
 ### Milestones
 

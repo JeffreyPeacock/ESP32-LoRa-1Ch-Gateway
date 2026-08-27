@@ -553,14 +553,12 @@ eleven are present. Six of them — `new-issue`, `fix-ticket`, `fix-ready`,
 Heltec-bound and **re-adapted on 2026-08-27** in preparation for a public
 repository and Project.
 
-**The identifiers those six need do not exist yet**, and they live in one place:
+**The long field and option IDs live in one place**,
 `.claude/board-config.md`, which is deliberately *not* under `commands/` so it
 does not become a slash command. The Heltec originals repeat the same project
 and field IDs in all six files, so changing a field there means six edits and
-one gets missed. Fill in the placeholders once, after creating the Project;
-the file carries the `gh project field-list` call that prints every ID.
-
-**Each of the six stops rather than guessing if it finds a `<...>` placeholder.**
+one gets missed. That file carries the `gh project field-list` call that prints
+every ID, if they ever need re-reading.
 
 What changed in adaptation, beyond the identifiers:
 
@@ -584,8 +582,30 @@ in `scripts/lib/common.sh` rather than the whole of the Heltec common library �
 the rest of that file is CP2102N and udev handling that does not apply. Its
 masking patterns include the `.SSID=` / `.PASS=` shape this board emits.
 
-**There is no remote yet, and no issue tracker.** Until there is, commit locally
-and do not report a push that did not happen.
+## The repository and the project
+
+Both created 2026-08-27, both **public**:
+
+| | |
+|---|---|
+| Repository | <https://github.com/JeffreyPeacock/ESP32-LoRa-1Ch-Gateway> |
+| Project | **#13**, <https://github.com/users/JeffreyPeacock/projects/13> |
+
+The project was copied from the sibling **SAMD21-LoRa-ProRF** board's project
+#11 and adapted, so the two share a structure: a `Status` field
+(Backlog / Prioritized / Ready / In Progress / Completed), `Priority` p1–p5, and
+an **`Area`** single-select in place of topical labels. Two of the Pro RF's areas
+were dropped because this board lacks the hardware — `Qwiic` and `Logging` — and
+`Hardware`, `LoRaWAN` and `Interop` were added.
+
+**The history here starts at one commit.** The previous 45 were discarded when
+the repository was re-initialised before publication: an earlier scrub had used
+`git filter-repo --replace-text`, which rewrites blob contents but **not commit
+messages**, and every check used `git log -S`, a pickaxe over diffs that cannot
+see message text — so two messages still named the stored WiFi credentials and
+nothing looked. If you ever verify a scrub, **check messages and contents
+separately**. The old messages are preserved, masked, in
+`docs/historical-commits.md`.
 
 ## Commits
 
