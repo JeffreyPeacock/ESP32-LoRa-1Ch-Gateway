@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(shellcheck *)",
+      "Bash(pio run)",
+      "Bash(pio device list)",
+      "Bash(pio pkg list*)",
+      "Bash(esptool version)",
+      "Bash(udevadm info*)",
+      "Bash(lsusb*)",
+      "Bash(pyenv versions*)",
+      "Bash(pyenv prefix*)",
+      "Bash(journalctl *)",
+      "Bash(dmesg *)",
+      "Bash(systemctl is-active *)",
+      "Bash(systemctl status *)",
+      "Bash(ip neigh *)",
+      "Bash(ip route *)",
+      "Bash(gh project view*)",
+      "Bash(gh project list *)",
+      "Bash(gh project item-list*)",
+      "Bash(gh project field-list*)",
+      "mcp__claude-in-chrome__get_page_text",
+      "mcp__claude-in-chrome__tabs_context_mcp",
+      "WebFetch(domain:docs.platformio.org)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:meshtastic.org)",
+      "WebFetch(domain:reticulum.network)"
+    ]
+  }
+}

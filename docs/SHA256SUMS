@@ -1,0 +1,27 @@
+# SHA-256 for the reference assets listed in docs/assets.md.
+# The files themselves are NOT committed -- they are third-party vendor
+# documents. Fetch them from the URLs in docs/assets.md, then from the
+# project root run:  sha256sum -c docs/SHA256SUMS
+#
+# Recorded 2026-08-21. Note that GitHub archive zips are not byte-stable:
+# for those, the commit SHA in docs/assets.md is the durable identifier.
+#
+4d7b150edfda88e44eb8f499c22693318666968125ff17f652ca9983d9929e5e  docs/datasheets/CH340DS1.pdf
+b36bb79ece0793d4131b42c3d39d25e2027c144a859b296160b5f6e652b06ff5  docs/datasheets/CH432DS1.pdf
+a7917e6b47528c9dcab06837a49d452e582751335797db879f1cf2d17cd29adf  docs/datasheets/espressif-esp32-datasheet.pdf
+a88f0a4376106498732580d8371009b4e6260358db2e9f3ab2deb0ee3e4fa5b6  docs/datasheets/espressif-esp32-wroom-32-datasheet.pdf
+b59d3737a9471a8684fcca693573e6019848b16d59df517f02a48025abcaa2f8  docs/datasheets/espressif-esp32-wroom-32e-datasheet-WRONG-REVISION.pdf
+2ba407b8df482ddd7ded2a4cfc1709f83f3bcb678ed609b025ecbb3e2a1a3e89  docs/datasheets/hoperf-rfm95w-datasheet.pdf
+330745f933df00015d2de3efd582608339350ba3a21001d11b9d449839ce016b  docs/datasheets/semtech-sx1276-77-78-79-datasheet.pdf
+05a705d68851959ffe0226b820fb3ec09de78c83852b780723871e3a6a96bf4c  docs/datasheets/sparkfun-lora-gateway-1ch-esp32-schematic.pdf
+8ed583b54af0ed68a9456e1cf55553ad405cb652826fa96bc156357b77b81e74  docs/sparkfun-hookup-guide.html
+bf5787b911c0eda836af51564e49a0b67aa874a9945b008d7c29292b76b8bc4a  docs/sparkfun-tutorial-1ch-gateway-ttn.html
+fb676b4935d3c16365de0d34ece7d74d190304265e54234edb08f0cede4f0755  etc/firmware/mcci-catena-arduino-lmic-master.zip
+726e62578bbd39de6ad7eaf77cb4c15a08e497206a2146cbbe596569260c18da  etc/firmware/sparkfun-eagle-ESP32_LoRa_1_Channel_Gateway.zip
+35414784124f7f77b365ca4de0daeee3172adad14b90dafc2bd3fa466b516335  etc/firmware/sparkfun-ESP32_LoRa_1Ch_Gateway-main.zip
+ff2ee848d5b448645de98a174df607e3241a428b8b3264b917857a61aa1c6181  etc/firmware/sparkfun-tutorial-ESP-1CH-TTN-Device-ABP-v01.zip
+47b33b896fac84f91e2c9d37d4dcb94b144210d5cbc3a56220d70d697e02c771  etc/firmware/sparkfun-tutorial-esp32_lora_gateway-x01.zip
+e92d15f0c3e64494674e0a6ecb4906a1b5f939aabe7f8ec15c22da8e08850d2c  etc/firmware/sparkfun-tutorial-sparkx_esp32_lora-variant-v01.zip
+2b39a2bf52764b4f2465cd2f0d3f09e35467a575e8dda37c039c0f614fec048a  etc/firmware/sparkfunX-ESP32_LoRa_1CH_Gateway-master.zip
+401cc63016531b2168460dbbf248969d67165ee7e05a0ebfc49435ba72d46f87  etc/firmware/things4u-ESP-1ch-Gateway-master.zip
+4adae5bd0fc331550be1795c81d074a6a55b8bf04f559ceb253d9ab1383ff918  etc/firmware/things4u-ESP-1ch-Gateway-v5.0-master.zip
